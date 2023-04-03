@@ -8,21 +8,26 @@ from tkinter import *  # 图形界面
 import tkinter.font as tkFont
 # import pytest #单元测试，需要pip安装
 
-
 # 提取txt作业文件，并且将每一题生成py文件，并保存到python文件夹
+
+
 def create_pyfile(aNo):
     os.chdir("A" + str(aNo))  # 到当前文件夹
     for x in range(1, 7):
-        exist = os.path.exists('python' + str(x))  # 判断是否存在文件夹
+        python_folder = 'python' + str(x)
+        exist = os.path.exists(python_folder)  # 判断是否存在文件夹
         if not exist:
             folder = os.getcwd()
-            os.mkdir(folder + '\\python' + str(x))  # 创建存放py作业文件的文件夹
+            os.mkdir(os.path.join(folder, python_folder))
+            # os.mkdir(folder+'/python'+str(x)) #创建存放py作业文件的文件夹
         else:
             pass
     exist = os.path.exists('temp')  # 判断是否存在文件夹
     if not exist:
+        temp_folder = 'temp'
         folder = os.getcwd()
-        os.mkdir(folder + '\\temp')  # 创建存放py作业文件的文件夹
+        os.mkdir(os.path.join(folder, temp_folder))
+        # os.mkdir(folder + '/temp')  # 创建存放py作业文件的文件夹
     else:
         pass
     for txtfilename in os.listdir("."):  # 提取文件夹里文件的名字
@@ -48,7 +53,9 @@ def create_pyfile(aNo):
             line_start = line_list[0].find('2')  # 有些学生可能对txt文件进行二次修改，产生BOM
             line_list[0] = line_list[0][line_start:]  # 去除BOM
             for w in range(1, 7):
-                with open('python' + str(w) + '/' + line_list[0].rstrip() + "_A" + str(aNo) + "Q" + str(w) + ".py", 'w', encoding='utf-8') as tmp:
+                student_answer_each_q = line_list[0].rstrip(
+                ) + "_A" + str(aNo) + "Q" + str(w) + ".py"
+                with open(os.path.join('python' + str(w), student_answer_each_q), 'w', encoding='utf-8') as tmp:
                     for line in codeslice[w - 1]:
                         tmp.write(line)
 
@@ -98,8 +105,8 @@ def pygui(stuNo, pyfilename, qNo):
     init_data_Text['xscrollcommand'] = sx1.set
     sx1.grid(row=11, column=0, columnspan=10, sticky=N + S + E + W)
     # 读取文件内容并展示出来
-    file = open("python" + str(qNo + 1) + "/" +
-                pyfilename, 'r', encoding='utf-8')
+    file = open(os.path.join("python" + str(qNo + 1),
+                             pyfilename), 'r', encoding='utf-8')
     filecontent = file.read()
     file.close()
     init_data_Text.insert("insert", filecontent)
@@ -109,7 +116,7 @@ def pygui(stuNo, pyfilename, qNo):
     def testcode(filename):
         contents = init_data_Text.get('1.0', END)
         root.clipboard_clear()
-        with open('temp/' + filename, 'w', encoding='utf-8') as tmp:
+        with open(os.path.join('temp', filename), 'w', encoding='utf-8') as tmp:
             for line in contents:
                 tmp.write(line)
                 root.clipboard_append(line)
@@ -146,14 +153,14 @@ def pygui(stuNo, pyfilename, qNo):
 
 def mark_assignment():
     for x in range(1, 7):
-        for pyfilename in os.listdir("python" + str(x) + "/"):
+        for pyfilename in os.listdir("python" + str(x)):
             stuNo = pyfilename[:10]
             pygui(stuNo, pyfilename, x - 1)
 # 批改每次作业的单个题目的程序
 
 
 def mark_assignment_single_question(x):
-    for pyfilename in os.listdir("python" + str(x) + "/"):
+    for pyfilename in os.listdir("python" + str(x)):
         stuNo = pyfilename[:10]
         pygui(stuNo, pyfilename, x - 1)
 
@@ -169,6 +176,14 @@ def test_func(aNo, qNo, stuNo, func_name):
 # 可以选择一次批改所有的作业， 也可以一次只批改一题
 # 如果只批改一题，则只会保存该题的分数，用于最后汇总
 def assignment(aNo, which):
+    if aNo == 1:
+        zh_score = "作业一"
+    elif aNo == 2:
+        zh_score = "作业二"
+    elif aNo == 3:
+        zh_score = "作业三"
+    elif aNo == 4:
+        zh_score = "作业四"
     create_pyfile(aNo)
     if which == 0:
         mark_assignment()
@@ -186,15 +201,15 @@ def assignment(aNo, which):
         scoretosave.append([studentNo, studentScore])
     os.chdir('..')
     if which == 0:
-        with open('A' + str(aNo) + '_marks_to_upload.csv', "w", newline='') as f:
+        with open('A' + str(aNo) + '_marks_to_upload.csv', "w", encoding='utf-8-sig', newline='') as f:
             writer = csv.writer(f)
-            writer.writerow(["number", "score"])
+            writer.writerow(["用户名", zh_score])
             writer.writerows(scoretosave)
             f.close()
     else:
-        with open('A' + str(aNo) + 'Q' + str(which) + '_marks.csv', "w", newline='') as f:
+        with open('A' + str(aNo) + 'Q' + str(which) + '_marks.csv', "w", encoding='utf-8-sig', newline='') as f:
             writer = csv.writer(f)
-            writer.writerow(["number", "score"])
+            writer.writerow(["用户名", zh_score])
             writer.writerows(scoretosave)
             f.close()
 
@@ -206,9 +221,17 @@ sum_up_scoretosave = []
 
 
 def sum_up_score(aNo):
+    if aNo == 1:
+        zh_score = "作业一"
+    elif aNo == 2:
+        zh_score = "作业二"
+    elif aNo == 3:
+        zh_score = "作业三"
+    elif aNo == 4:
+        zh_score = "作业四"
     # os.chdir("A"+str(aNo))
     for x in range(1, 7):
-        with open('A' + str(aNo) + 'Q' + str(x) + '_marks.csv') as f:
+        with open('A' + str(aNo) + 'Q' + str(x) + '_marks.csv', encoding='utf-8-sig') as f:
             reader = csv.reader(f)
             header_row = next(reader)
             for row in reader:
@@ -224,9 +247,9 @@ def sum_up_score(aNo):
                     sum_up_total_score[y] += x[y]
     for studentNo, studentScore in sum_up_total_score.items():
         sum_up_scoretosave.append([studentNo, studentScore])
-    with open('A' + str(aNo) + '_marks_to_upload.csv', "w", newline='') as f:
+    with open('A' + str(aNo) + '_marks_to_upload.csv', "w", encoding='utf-8-sig', newline='') as f:
         writer = csv.writer(f)
-        writer.writerow(["number", "score"])
+        writer.writerow(["用户名", zh_score])
         writer.writerows(sum_up_scoretosave)
         f.close()
 
@@ -234,14 +257,14 @@ def sum_up_score(aNo):
 # 批改第一次作业所有题，必须一次性批完，无需运行汇总分数的函数,自动汇总
 # assignment(1,0)
 # 批改第一次作业单个题目，每个题目必须一次性批完，否则无法保存，改完后保存该题的所有分数
-assignment(1, 1)  # 批改第一次作业第一题
+# assignment(1,1) #批改第一次作业第一题
 # assignment(1,2) #批改第一次作业第二题
 # assignment(1,3) #批改第一次作业第三题
 # assignment(1,4) #批改第一次作业第四题
 # assignment(1,5) #批改第一次作业第五题
 # assignment(1,6) #批改第一次作业第六题
 # 如果是按一题一题来批改的，运行该函数来汇总所有分数，请先批完所有题再运行
-# sum_up_score(1)
+sum_up_score(1)
 
 # assignment(2,0) #批改第二次作业所有题
 # assignment(2,1) #批改第二次作业第一题
