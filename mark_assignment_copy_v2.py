@@ -88,15 +88,15 @@ def pygui(stuNo, pyfilename, qNo):
     # 设置标题
     root.title('Python GUI')
     # 设置窗口大小
-    root.geometry('580x680+50+25')
+    root.geometry('680x680+50+30')
     # 设置窗口是否可变长、宽，True：可变，False：不可变
     root.resizable(width=False, height=True)
-    ft = tkFont.Font(family="Consolas", size=12)
+    ft = tkFont.Font(family="Consolas", size=14)
     # 创建窗口
     code = Label(root, text="作业代码")
     code.grid(row=0, column=0)
     # 自适应滚动条
-    init_data_Text = Text(root, wrap=NONE, width=60, height=30, font=ft)
+    init_data_Text = Text(root, wrap=NONE, width=70, height=30, font=ft)
     init_data_Text.grid(row=1, column=0, rowspan=10, columnspan=10)
     sy1 = Scrollbar(root, command=init_data_Text.yview)
     sx1 = Scrollbar(root, orient="horizontal", command=init_data_Text.xview)
@@ -257,14 +257,14 @@ def sum_up_score(aNo):
 # 批改第一次作业所有题，必须一次性批完，无需运行汇总分数的函数,自动汇总
 # assignment(1,0)
 # 批改第一次作业单个题目，每个题目必须一次性批完，否则无法保存，改完后保存该题的所有分数
-# assignment(1,1) #批改第一次作业第一题
-# assignment(1,2) #批改第一次作业第二题
+# assignment(1, 1)  # 批改第一次作业第一题
+assignment(1, 2)  #批改第一次作业第二题
 # assignment(1,3) #批改第一次作业第三题
 # assignment(1,4) #批改第一次作业第四题
 # assignment(1,5) #批改第一次作业第五题
 # assignment(1,6) #批改第一次作业第六题
 # 如果是按一题一题来批改的，运行该函数来汇总所有分数，请先批完所有题再运行
-sum_up_score(1)
+# sum_up_score(1)
 
 # assignment(2,0) #批改第二次作业所有题
 # assignment(2,1) #批改第二次作业第一题
@@ -284,11 +284,11 @@ sum_up_score(1)
 # assignment(3,6) #批改第三次作业第六题
 # sum_up_score(3) #汇总分数
 
-# assignment(4,0)
-# assignment(4,1)
-# assignment(4,2)
-# assignment(4,3)
-# assignment(4,4)
-# assignment(4,5)
-# assignment(4,6)
-# sum_up_score(4)
+# assignment(4,0) #批改第四次作业所有题
+# assignment(4,1) #批改第四次作业第一题
+# assignment(4,2) #批改第四次作业第二题
+# assignment(4,3) #批改第四次作业第三题
+# assignment(4,4) #批改第四次作业第四题
+# assignment(4,5) #批改第四次作业第五题
+# assignment(4,6) #批改第四次作业第六题
+# sum_up_score(4) #汇总分数
