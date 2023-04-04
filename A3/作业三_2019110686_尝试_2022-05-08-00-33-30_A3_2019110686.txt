@@ -1,0 +1,107 @@
+2019110686
+蒋利芳
+A3Q1
+import random
+def fff():
+    for i in range(3):
+        for j in range(3):
+            if random.random() >0.5:
+                print('#',end="")
+            else :
+                print(" ",end=" ")
+        print()
+fff()
+A3Q2
+def input_ratio(r):
+    def difi(x):
+        return(x,x*r,x*r**2,x*r**3,x*3**4)
+    return difi
+gs3=input_ratio(3)
+print(gs3(4))
+A3Q3
+def count_numbers(fune):
+    def decorate(*args):
+        print("The numbers are:")
+        fune(*args)
+        print("There are",len(args),"numbers.")
+    return decorate
+@count_numbers
+def numbers(*args):
+    print(args)
+numbers(1,2,3,4)
+A3Q4
+class Food():
+    def __init__(self,name,price):
+        self.name=name
+        self.price=price
+    def get_info(self):
+        print(self.name+' has a price of '+str(self.price))
+    def update_price(self,new):
+        self.price=new
+class Fruit(Food):
+    def __init__(self,name,price,area):
+        super().__init__(name,price)
+        self.area=area
+    def show_area(self):
+        print(self.name+' is produced in '+self.area)
+food_1 = Food('Hot Dog', 15)
+food_1.get_info()
+food_1.update_price(20)
+food_1.get_info()
+fruit_1 = Fruit('Orange', 5, 'California')
+fruit_1.show_area()
+A3Q5
+class Num():
+    def __init__(self,nums):
+        self.nums=nums
+    def sip(self,num):
+        if num in self.nums:
+            a=0
+            for n in self.nums:
+                if n==num:
+                    return a
+                a=a+1
+        else:
+            a=0
+            for n in self.nums:
+                if num<n:
+                    return a
+                a=a+1
+x=Num((1,2,5,8,13,19))
+print(x.sip(5))            
+x=Num((1,2,5,8,13,19))
+print(x.sip(15))
+A3Q6
+class Words():
+    def __init__(self,array):
+        self.array=array
+    def prefix(self):
+        b=[]
+        for word in self.array:
+            a=list(word)
+            b.append(a)
+        z=len(self.array)
+        c=0
+        f=[]
+        for d in b:
+            e=len(d)
+            f.append(e)
+        g=min(f)
+        v=[]
+        while c<int(g):
+            h=[l[c] for l in b]
+            j=h[0]
+            for k in range(z):
+                if j in h:
+                    h.remove(j)
+            if not h:
+                v.append(j)
+            c=c+1
+        t=''
+        for w in v:
+            t=t+w
+        return t   
+x=Words(("flower","flow","flight"))
+print(x.prefix())            
+y=Words(("apple","application","appendix","appointment"))
+print(y.prefix())

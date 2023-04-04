@@ -1,0 +1,156 @@
+2019111010
+王子豪
+A4Q1
+def count_words(filename,filename2):
+    try:
+        with open(filename) as file_object:
+            contents=file_object.read()
+    except FileNotFoundError:
+        msg="Sorry,the file "+filename+" does not exist."
+        print(msg)
+    else:
+        words=contents.split()
+        num_words=len(words)
+        print("The file "+filename+" has about "+str(num_words)+" words.")
+        with open(filename2,'w') as f_obj:
+            f_obj.write(str(num_words))
+filename='Harry_Potter.txt'
+filename2='Count_Words.txt'
+Count_Words=count_words(filename,filename2)
+A4Q2
+import matplotlib.pyplot as plt
+def threepoints(n):
+    a=[]
+    b=[]
+    for i in n:
+        a.append(i[0])
+        b.append(i[1])
+        
+    if (b[1]-b[0])*(a[2]-a[1])==(b[2]-b[1])*(a[1]-a[0]):
+            print('They lie on a straight line.')
+    else:
+             X = [a[0], a[1], a[2], a[0]]
+             Y = [b[0], b[1], b[2], b[0]]
+             plt.plot(X, Y)
+             plt.show()
+A4Q3
+import csv
+from plotly.graph_objs import Bar, Layout
+from plotly import offline
+filename='midterm.csv'
+with open(filename) as f:
+    reader=csv.reader(f)
+    header_row=next(reader)
+    scores=[]
+    for row in reader:
+        score=float(row[1])
+        scores.append(score)
+    print(scores)
+a=[]
+b=[]
+c=[]
+d=[]
+e=[]
+for score in scores:
+    if 100>=score>=90:
+        a.append(score)
+    elif 90>score>=80:
+        b.append(score)
+    elif 80>score>=70:
+        c.append(score)
+    elif 70>score>=60:
+        d.append(score)
+    elif 60>score:
+        e.append(score)
+x_values=['A','B','C','D','F']
+frequencies=[len(a),len(b),len(c),len(d),len(e)]
+data=[Bar(x=x_values,y=frequencies)]
+x_axis_config={'title': 'level'}
+y_axis_config={'title': 'frequencies'}
+my_layout=Layout(title='Test Level',xaxis=x_axis_config, yaxis=y_axis_config)
+offline.plot({'data':data,'layout':my_layout},filename='midterm.html')
+A4Q4
+import json
+from plotly.graph_objs import Bar, Layout
+from plotly import offline
+filename = 'data.json'
+with open(filename,'r',encoding="utf-8") as f_obj:
+    information=json.load(f_obj)
+canteens=[]
+for i in information:
+    canteens.append(i[1])
+x_values=[]
+y_values=[]
+for i in canteens:
+    if i not in x_values:
+        x_values.append(i)
+for i in x_values:
+    frequency=canteens.count(i)
+    y_values.append(frequency)
+data=[Bar(x=x_values,y=y_values)]
+x_axis_config={'title': 'canteens'}
+y_axis_config={'title': 'frequencies'}
+my_layout=Layout(title='my visiting to different canteens',
+xaxis=x_axis_config, yaxis=y_axis_config)
+offline.plot({'data':data,'layout':my_layout},filename='canteens.html')
+A4Q5
+import matplotlib.pyplot as plt
+import json
+from itertools import groupby
+from datetime import datetime
+filename = 'data.json'
+with open(filename,"r",encoding="utf-8") as f_obj:
+    information = json.load(f_obj)
+consumptions=[]
+dates=[]
+for i in information:
+    consumptions.append(i[2])
+    date=datetime.strptime(i[0], "%m/%d/%Y")
+    dates.append(date)
+xy_map=[]  
+for x, y in groupby(sorted(zip(dates, consumptions)), lambda w: w[0]):
+    y_list = []
+    for first, second in y:
+        y_list.append(float(second))
+    xy_map.append([x, sum(y_list)])
+X , Y = zip(*xy_map)
+input_values =date
+plt.plot(X, Y, linewidth=0.5)
+plt.xticks(X[::1],rotation=45,fontsize=10)
+plt.scatter(X, Y, s=5)
+plt.title('每日消费金额',fontsize=10)
+plt.tight_layout()
+plt.show()
+A4Q6
+#选用第五、第六两列数据并生成BMI指数对运动员身材健康程度进行分析
+#得出结论：奥运运动员的BMI呈整体分布，绝大多数在18-24之间，处于健康状态
+import csv
+from plotly.graph_objs import Bar, Layout
+from plotly import offline
+filename = ’athlete_events.csv'
+with open(filename) as f:
+    reader = csv.reader(f) 
+    header_row = next(reader)
+    BMIs=[]
+    for row in reader:
+        if row[4]=='NA'or row[5]=='NA':
+            pass
+        else:
+            height=(float(row[4])*0.01)
+            weight=float(row[5])
+            BMI=(weight/(height**2))//1
+            BMIs.append(BMI)
+X=[]
+Y=[]
+for i in BMIs:
+    if i not in X:
+        X.append(i)
+for j in X:
+    f=BMIs.count(j)
+    Y.append(f)
+data=[Bar(x=X,y=Y)]
+x_axis_config={'title': 'BMIs'}
+y_axis_config={'title': 'frequencies'}
+my_layout=Layout(title='BMIs',
+xaxis=x_axis_config, yaxis=y_axis_config)
+offline.plot({'data':data,'layout':my_layout},filename='athlete BMIs.html')

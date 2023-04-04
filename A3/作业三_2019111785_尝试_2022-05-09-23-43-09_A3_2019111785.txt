@@ -1,0 +1,128 @@
+2019111785
+卢鲲升
+A3Q1
+import random
+
+width = 3
+height = 3
+screen = []
+
+
+def Init():
+    for i in range(height):
+        line = []
+        for j in range(width):
+            if random.random() > 0.8:
+                line.append('#')
+            else:
+                line.append(' ')
+        screen.append(line)
+
+
+def PrintScreen():
+    for i in range(height):
+        for j in range(width):
+            print(screen[i][j] + ' ', end='')
+        print()
+
+def fff():
+    Init()
+    PrintScreen()
+    
+fff()
+A3Q2
+def input_ratio(r):
+    def scale_factor(a):
+        sequence=tuple([a*r**x for x in range(0,5)])
+        return sequence
+    return scale_factor
+
+gs3=input_ratio(3)
+print(gs3(4))
+A3Q3
+def count_numbers(fun_tobe_deco):
+    def fun_deco(*args):
+        print("The numbers are:")
+        fun_tobe_deco(*args)
+        c=len(args)
+        print("There are "+str(c)+" numbers.")
+    return(fun_deco)
+
+@count_numbers
+def numbers(*args):
+    print(args)
+
+numbers(1,2,3,4)
+A3Q4
+class Food():
+    def __init__(self,name,price):
+        self.name=name
+        self.price=price
+        
+    def get_info(self):
+        print(self.name+" has a price of "+str(self.price)+".")
+    
+    def update_price(self,num):
+        self.price=num
+
+food_1 = Food('Hot Dog', 15)
+food_1.get_info()
+food_1.update_price(20)
+food_1.get_info()
+
+class Fruit(Food):
+    def __init__(self,name,price,area):
+        self.name=name
+        self.price=price
+        self.area=area
+    
+    def show_area(self):
+        print(self.name+" is produced in "+self.area+".")
+
+fruit_1 = Fruit('Orange', 5, 'California')
+fruit_1.show_area()
+A3Q5
+class Num():
+    def __init__(self,args):
+        self.args=args
+    
+    def sip(self,target):
+        l=0
+        for i in self.args:
+            l=l+1
+        j=0
+        while j<=l:
+            if target<=self.args[j]:
+                return(j)
+            j=j+1
+
+x=Num((1,2,5,8,13,19))
+print(x.sip(5))
+                
+x=Num((1,2,5,8,13,19))
+print(x.sip(15))
+A3Q6
+class Words():
+    def __init__(self,args):
+        self.args=args
+    
+    def prefix(self):
+        s=0
+        for i in range(len(self.args)):
+            if len(self.args[i])<len(self.args[s]):
+                s=i
+        strs=""
+        for j in range(len(self.args[s])):
+            strs=self.args[s][:j]
+            for k in range(len(self.args)):
+                if strs!=self.args[k][:j]:
+                    r=self.args[s][:j-1]
+                    return(r)
+                    break
+
+
+x=Words(("flower","flow","flight"))
+print(x.prefix())
+
+y=Words(("apple","application","appendix","appointment"))
+print(y.prefix())

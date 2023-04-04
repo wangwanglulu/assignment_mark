@@ -1,0 +1,130 @@
+2019111474
+王开元
+A3Q1
+import random
+screen = []
+
+def fff():
+    for i in range(3):
+        line = []
+        for j in range(3):
+            if random.random() > 0.7:
+                line.append("#")
+            else:
+                line.append(" ")
+        screen.append(line)
+    
+    for i in range(3):
+        for j in range(3):
+            print(screen[i][j]+" ",end="")
+        print()
+    
+fff()
+A3Q2
+def input_ratio(r):
+    def scale_factor(a):
+        answer = []
+        for n in range(5):
+            answer.append(a*r**n)
+        answer = tuple(answer)
+        return answer
+    return scale_factor
+
+gs3 = input_ratio(3)
+print(gs3(4))
+A3Q3
+def count_numbers(f):
+    def count(*args):
+        i = 0
+        print("The numbers are:")
+        f(*args) #在这里要保持参数个数相同！
+        i= len(args)
+        print("There are " + str(i) + " numbers.")
+    return count #关键理解点
+
+@count_numbers
+def numbers(*args):
+    print(args)
+
+numbers(1,2,3,4)
+A3Q4
+class Food():
+    def __init__(self,name,price):
+        self.name = name
+        self.price = price
+        
+    def get_info(self):
+        print(self.name + " has a price of " + str(self.price))
+    
+    def update_price(self,p):
+        self.price = p
+
+food_1 = Food('Hot Dog', 15)
+food_1.get_info()
+food_1.update_price(20)
+food_1.get_info()
+
+class Fruit(Food):
+    def __init__(self,name,price,area):
+        super().__init__(name, price) #继承语句别少，还有两种其他方式
+        self.area = area
+    
+    def show_area(self):
+        print(self.name + " is produced in " + self.area + ".")
+
+fruit_1 = Fruit('Orange', 5, 'California')
+fruit_1.show_area()
+A3Q5
+class Num():
+    def __init__(self,numbers):
+        self.numbers = numbers
+        
+    def sip(self,y):
+        i = 0
+        for number in self.numbers:
+            if y == number:
+                return i
+                break
+            elif y < number:
+                return i
+                break
+            else:
+                i += 1
+
+x=Num((1,2,5,8,13,19))
+print(x.sip(15))
+A3Q6
+class Words():
+    def __init__(self,words):
+        self.words = words
+    
+    def prefix(self):
+        shortest = 999
+        shortest_word = 0
+        for word in self.words:
+            if len(word) < shortest:
+                shortest = len(word)
+                shortest_word = word
+        
+        chongfu = []
+        for i in range (shortest+1):
+            for word in self.words:
+                if shortest_word[0:i] == word[0:i]:
+                    chongfu.append(shortest_word[0:i])
+                else:
+                    while shortest_word[0:i] in chongfu:
+                        chongfu.remove(shortest_word[0:i])
+                    break
+                        
+        longest = 0
+        longest_word = 0
+        for zuhe in chongfu:
+            if len(zuhe) > longest:
+                longest = len(zuhe)
+                longest_word = zuhe
+        return longest_word
+
+x=Words(("flower","flow","flight"))
+print(x.prefix())
+y=Words(("apple","application","appendix","appointment"))
+print(y.prefix())
