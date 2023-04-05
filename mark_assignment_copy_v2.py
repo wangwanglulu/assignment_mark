@@ -115,7 +115,7 @@ def pygui(stuNo, pyfilename, qNo):
         root.geometry('680x700+50+30')
         ft = tkFont.Font(family="Consolas", size=14)
     else:
-        root.geometry('670x740+50+30')
+        root.geometry('670x800+50+30')
         ft = tkFont.Font(family="Consolas", size=12)
     # 设置窗口是否可变长、宽，True：可变，False：不可变
     root.resizable(width=False, height=True)
@@ -245,7 +245,7 @@ def pygui_case(stuNo, pyfilename, qNo):
         root.geometry('680x700+50+30')
         ft = tkFont.Font(family="Consolas", size=14)
     else:
-        root.geometry('670x740+50+30')
+        root.geometry('670x800+50+30')
         ft = tkFont.Font(family="Consolas", size=12)
     # 设置窗口是否可变长、宽，True：可变，False：不可变
     root.resizable(width=False, height=True)
