@@ -105,10 +105,10 @@ def pygui(stuNo, pyfilename, qNo):
     # 设置标题
     root.title('Python作业代码')
     # 设置窗口大小
-    root.geometry('680x680+50+30')
+    root.geometry('680x750+50+30')
     # 设置窗口是否可变长、宽，True：可变，False：不可变
     root.resizable(width=False, height=True)
-    ft = tkFont.Font(family="Consolas", size=14)
+    ft = tkFont.Font(family="Consolas", size=12)
     # 创建窗口
     code = Label(root, text="作业代码")
     code.grid(row=0, column=0)
@@ -230,10 +230,10 @@ def pygui_case(stuNo, pyfilename, qNo):
     # 设置标题
     root.title('Python作业代码')
     # 设置窗口大小
-    root.geometry('680x700+50+30')
+    root.geometry('680x750+50+30')
     # 设置窗口是否可变长、宽，True：可变，False：不可变
     root.resizable(width=False, height=True)
-    ft = tkFont.Font(family="Consolas", size=14)
+    ft = tkFont.Font(family="Consolas", size=12)
     # 创建窗口
     code = Label(root, text="作业代码")
     code.grid(row=0, column=0)
@@ -468,15 +468,15 @@ def assignmentgui():
             sum_up_text = f'A{assNo} 分数汇总'
             locals()[f'selection{assNo}{questionNo}'] = make_selection_func(
                 assNo, questionNo)
-            Button(window, text=text, command=locals()[f'selection{assNo}{questionNo}'], width=6, height=2).grid(
+            Button(window, text=text, command=locals()[f'selection{assNo}{questionNo}'], width=10, height=2).grid(
                 row=questionNo * 2 + 2, column=assNo, padx=5, pady=5)
             lab_text_0 = Label(window, textvariable=var, bg='yellow', font=('Arial', 14), justify='left',
                                padx=5).grid(row=18, columnspan=5)
         locals()[f'selection_sum{assNo}'] = make_selection_func_sum(
             assNo)
-        Button(window, text=sum_up_text, command=locals()[f'selection_sum{assNo}'], width=6,
+        Button(window, text=sum_up_text, command=locals()[f'selection_sum{assNo}'], width=10,
                height=2).grid(row=16, column=assNo, padx=5, pady=5)
-    Button(window, text='确定', command=window.destroy, width=6,
+    Button(window, text='确定', command=window.destroy, width=10,
            height=2).grid(row=20, column=assNo, padx=5, pady=5)
     window .mainloop()
     if your_choice:
