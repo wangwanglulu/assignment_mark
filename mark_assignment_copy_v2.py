@@ -108,10 +108,10 @@ def pygui(stuNo, pyfilename, qNo):
     if os.name == 'posix':
         root.geometry('680x680+50+30')
     else:
-        root.geometry('680x750+50+30')
+        root.geometry('670x740+50+30')
     # 设置窗口是否可变长、宽，True：可变，False：不可变
     root.resizable(width=False, height=True)
-    ft = tkFont.Font(family="Consolas", size=14)
+    ft = tkFont.Font(family="Consolas", size=12)
     # 创建窗口
     code = Label(root, text="作业代码")
     code.grid(row=0, column=0)
@@ -233,7 +233,10 @@ def pygui_case(stuNo, pyfilename, qNo):
     # 设置标题
     root.title('Python作业代码')
     # 设置窗口大小
-    root.geometry('680x750+50+30')
+    if os.name == 'posix':
+        root.geometry('680x680+50+30')
+    else:
+        root.geometry('670x740+50+30')
     # 设置窗口是否可变长、宽，True：可变，False：不可变
     root.resizable(width=False, height=True)
     ft = tkFont.Font(family="Consolas", size=12)
@@ -457,7 +460,7 @@ def assignmentgui():
     if os.name == 'posix':
         window.geometry('560x560+50+30')
     else:
-        window.geometry('480x560+50+30')
+        window.geometry('380x560+50+30')
     # 设置窗口是否可变长、宽，True：可变，False：不可变
     window.resizable(width=False, height=True)
     ft = tkFont.Font(family="Consolas", size=14)
