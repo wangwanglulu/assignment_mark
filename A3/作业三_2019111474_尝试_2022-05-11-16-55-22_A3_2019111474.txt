@@ -1,5 +1,5 @@
-2019111474
-王开元
+
+
 A3Q1
 import random
 screen = []

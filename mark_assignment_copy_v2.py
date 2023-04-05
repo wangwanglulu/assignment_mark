@@ -52,10 +52,16 @@ def create_pyfile(aNo):
                         line_list[position[z] + 1:position[z + 1]])
                 codeslice.append(line_list[position[5] + 1:])
                 # 分别保存每一道题的代码片段到一个py文件里
-                line_start = line_list[0].find('2')  # 有些学生可能对txt文件进行二次修改，产生BOM
-                line_list[0] = line_list[0][line_start:]  # 去除BOM
+                # line_start = line_list[0].find('2')  # 有些学生可能对txt文件进行二次修改，产生BOM
+                # student_id = line_list[0][line_start:].strip()  # 去除BOM
+                # if student_id:
+                #     line_list[0] = student_id
+                # else:
+                file_start = txtfilename.find('_')
+                file_end = txtfilename.find('_', file_start+1)
+                student_id = txtfilename[file_start+1: file_end]
                 for w in range(1, 7):
-                    student_answer_each_q = line_list[0].rstrip(
+                    student_answer_each_q = student_id.strip(
                     ) + "_A" + str(aNo) + "Q" + str(w) + ".py"
                     with open(os.path.join('python' + str(w), student_answer_each_q), 'w', encoding='utf-8') as tmp:
                         for line in codeslice[w - 1]:
@@ -106,12 +112,14 @@ def pygui(stuNo, pyfilename, qNo):
     root.title('Python作业代码')
     # 设置窗口大小
     if os.name == 'posix':
-        root.geometry('680x680+50+30')
+        root.geometry('680x700+50+30')
+        ft = tkFont.Font(family="Consolas", size=14)
     else:
         root.geometry('670x740+50+30')
+        ft = tkFont.Font(family="Consolas", size=12)
     # 设置窗口是否可变长、宽，True：可变，False：不可变
     root.resizable(width=False, height=True)
-    ft = tkFont.Font(family="Consolas", size=12)
+    # ft = tkFont.Font(family="Consolas", size=12)
     # 创建窗口
     code = Label(root, text="作业代码")
     code.grid(row=0, column=0)
@@ -234,12 +242,14 @@ def pygui_case(stuNo, pyfilename, qNo):
     root.title('Python作业代码')
     # 设置窗口大小
     if os.name == 'posix':
-        root.geometry('680x680+50+30')
+        root.geometry('680x700+50+30')
+        ft = tkFont.Font(family="Consolas", size=14)
     else:
         root.geometry('670x740+50+30')
+        ft = tkFont.Font(family="Consolas", size=12)
     # 设置窗口是否可变长、宽，True：可变，False：不可变
     root.resizable(width=False, height=True)
-    ft = tkFont.Font(family="Consolas", size=12)
+    # ft = tkFont.Font(family="Consolas", size=12)
     # 创建窗口
     code = Label(root, text="作业代码")
     code.grid(row=0, column=0)
@@ -496,3 +506,4 @@ def assignmentgui():
 
 
 assignmentgui()
+
