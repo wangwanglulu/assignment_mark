@@ -360,14 +360,20 @@ def test_func(aNo, qNo, stuNo, func_name):
 # 如果只批改一题，则只会保存该题的分数，用于最后汇总
 
 def assignment(aNo, which):
+    exist = os.path.exists('col_id.txt')
+    if exist:
+        with open('col_id.txt',encoding="utf-8") as col:
+            col_id = col.read()
+    else:
+        col_id = "#####"
     if aNo == 1:
-        zh_score = "作业一"
+        zh_score = f"作业一 [总分: 6 分数] |{col_id}"
     elif aNo == 2:
-        zh_score = "作业二"
+        zh_score = f"作业二 [总分: 6 分数] |{col_id}"
     elif aNo == 3:
-        zh_score = "作业三"
+        zh_score = f"作业三 [总分: 6 分数] |{col_id}"
     elif aNo == 4:
-        zh_score = "作业四"
+        zh_score = f"作业四 [总分: 12 分数] |{col_id}"
     create_pyfile(aNo)
     if which == 0:
         mark_assignment()
@@ -408,14 +414,20 @@ sum_up_scoretosave = []
 
 
 def sum_up_score(aNo):
+    exist = os.path.exists('col_id.txt')
+    if exist:
+        with open('col_id.txt',encoding="utf-8") as col:
+            col_id = col.read()
+    else:
+        col_id = "#####"
     if aNo == 1:
-        zh_score = "作业一"
+        zh_score = f"作业一 [总分: 6 分数] |{col_id}"
     elif aNo == 2:
-        zh_score = "作业二"
+        zh_score = f"作业二 [总分: 6 分数] |{col_id}"
     elif aNo == 3:
-        zh_score = "作业三"
+        zh_score = f"作业三 [总分: 6 分数] |{col_id}"
     elif aNo == 4:
-        zh_score = "作业四"
+        zh_score = f"作业四 [总分: 12 分数] |{col_id}"
     # os.chdir("A"+str(aNo))
     for x in range(1, 7):
         with open('A' + str(aNo) + 'Q' + str(x) + '_marks.csv', encoding='utf-8-sig') as f:

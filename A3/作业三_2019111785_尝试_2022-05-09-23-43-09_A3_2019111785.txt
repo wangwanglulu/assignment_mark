@@ -1,6 +1,7 @@
 2019111785
 卢鲲升
 A3Q1
+#31
 import random
 
 width = 3
@@ -31,6 +32,7 @@ def fff():
     
 fff()
 A3Q2
+#32
 def input_ratio(r):
     def scale_factor(a):
         sequence=tuple([a*r**x for x in range(0,5)])
@@ -40,6 +42,7 @@ def input_ratio(r):
 gs3=input_ratio(3)
 print(gs3(4))
 A3Q3
+#33
 def count_numbers(fun_tobe_deco):
     def fun_deco(*args):
         print("The numbers are:")
@@ -54,6 +57,7 @@ def numbers(*args):
 
 numbers(1,2,3,4)
 A3Q4
+#34
 class Food():
     def __init__(self,name,price):
         self.name=name
@@ -82,6 +86,7 @@ class Fruit(Food):
 fruit_1 = Fruit('Orange', 5, 'California')
 fruit_1.show_area()
 A3Q5
+#35
 class Num():
     def __init__(self,args):
         self.args=args
@@ -102,6 +107,7 @@ print(x.sip(5))
 x=Num((1,2,5,8,13,19))
 print(x.sip(15))
 A3Q6
+#36
 class Words():
     def __init__(self,args):
         self.args=args

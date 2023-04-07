@@ -1,6 +1,7 @@
 2019110571
 田相新
 A4Q1
+#11
 class MyTxt():
 
     def __init__(self, path):
@@ -29,6 +30,7 @@ a = MyTxt('./Harry_Potter.txt')
 a.get_wdnum()
 a.record_num('Count_Words.txt')
 A4Q2
+#12
 import math
 import matplotlib.pyplot as plt
 
@@ -52,6 +54,7 @@ def threepoints(points):
         plt.plot([point3[0], point2[0]], [point3[1], point2[1]])
         plt.show()
 A4Q3
+#13
 import csv
 from plotly.graph_objs import Layout, Bar
 from plotly import offline
@@ -92,6 +95,7 @@ my_layout = Layout(title='mid_term grades classification',
                    yaxis=y_axis_config)
 offline.plot({'data': data, 'layout': my_layout}, filename='myhist.html')
 A4Q4
+#14
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
@@ -111,6 +115,7 @@ plt.tight_layout()
 plt.bar(aa.index, list(aa['expense']))
 plt.show()
 A4Q5
+#15
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
@@ -144,6 +149,7 @@ plt.ylabel('Consumption')
 plt.plot(aa.index, aa['expense'])
 plt.show()
 A4Q6
+#16
 # 使用了（Year,Medal,Event,Sex,Team,Name）这几列数据，得到了如下四个结论：
 # 1、通过fig1可以看出奖牌数量与项目数量大致是成正比关系，随着时间推移奥运会项目越来越多，每一届能够诞生的奖牌也逐渐增加，
 #   但是还可以看出在1994年开始举办冬季奥运会之后，曲线呈锯齿状，因为冬奥会的项目要显著少于夏季奥运会，奖牌量自然也远小于夏季奥运会

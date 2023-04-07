@@ -1,6 +1,7 @@
 2019111010
 王子豪
 A4Q1
+#21
 def count_words(filename,filename2):
     try:
         with open(filename) as file_object:
@@ -18,6 +19,7 @@ filename='Harry_Potter.txt'
 filename2='Count_Words.txt'
 Count_Words=count_words(filename,filename2)
 A4Q2
+#22
 import matplotlib.pyplot as plt
 def threepoints(n):
     a=[]
@@ -34,6 +36,7 @@ def threepoints(n):
              plt.plot(X, Y)
              plt.show()
 A4Q3
+#23
 import csv
 from plotly.graph_objs import Bar, Layout
 from plotly import offline
@@ -70,6 +73,7 @@ y_axis_config={'title': 'frequencies'}
 my_layout=Layout(title='Test Level',xaxis=x_axis_config, yaxis=y_axis_config)
 offline.plot({'data':data,'layout':my_layout},filename='midterm.html')
 A4Q4
+#24
 import json
 from plotly.graph_objs import Bar, Layout
 from plotly import offline
@@ -94,6 +98,7 @@ my_layout=Layout(title='my visiting to different canteens',
 xaxis=x_axis_config, yaxis=y_axis_config)
 offline.plot({'data':data,'layout':my_layout},filename='canteens.html')
 A4Q5
+#25
 import matplotlib.pyplot as plt
 import json
 from itertools import groupby
@@ -122,6 +127,7 @@ plt.title('每日消费金额',fontsize=10)
 plt.tight_layout()
 plt.show()
 A4Q6
+#26
 #选用第五、第六两列数据并生成BMI指数对运动员身材健康程度进行分析
 #得出结论：奥运运动员的BMI呈整体分布，绝大多数在18-24之间，处于健康状态
 import csv

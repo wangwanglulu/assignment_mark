@@ -1,6 +1,7 @@
 
 
 A3Q1
+#21
 import random
 screen = []
 
@@ -21,6 +22,7 @@ def fff():
     
 fff()
 A3Q2
+#22
 def input_ratio(r):
     def scale_factor(a):
         answer = []
@@ -33,6 +35,7 @@ def input_ratio(r):
 gs3 = input_ratio(3)
 print(gs3(4))
 A3Q3
+#23
 def count_numbers(f):
     def count(*args):
         i = 0
@@ -48,6 +51,7 @@ def numbers(*args):
 
 numbers(1,2,3,4)
 A3Q4
+#24
 class Food():
     def __init__(self,name,price):
         self.name = name
@@ -75,6 +79,7 @@ class Fruit(Food):
 fruit_1 = Fruit('Orange', 5, 'California')
 fruit_1.show_area()
 A3Q5
+#25
 class Num():
     def __init__(self,numbers):
         self.numbers = numbers
@@ -94,6 +99,7 @@ class Num():
 x=Num((1,2,5,8,13,19))
 print(x.sip(15))
 A3Q6
+#26
 class Words():
     def __init__(self,words):
         self.words = words

@@ -1,6 +1,7 @@
 2019110686
 蒋利芳
 A3Q1
+#11
 import random
 def fff():
     for i in range(3):
@@ -12,6 +13,7 @@ def fff():
         print()
 fff()
 A3Q2
+#12
 def input_ratio(r):
     def difi(x):
         return(x,x*r,x*r**2,x*r**3,x*3**4)
@@ -19,6 +21,7 @@ def input_ratio(r):
 gs3=input_ratio(3)
 print(gs3(4))
 A3Q3
+#13
 def count_numbers(fune):
     def decorate(*args):
         print("The numbers are:")
@@ -30,6 +33,7 @@ def numbers(*args):
     print(args)
 numbers(1,2,3,4)
 A3Q4
+#14
 class Food():
     def __init__(self,name,price):
         self.name=name
@@ -51,6 +55,7 @@ food_1.get_info()
 fruit_1 = Fruit('Orange', 5, 'California')
 fruit_1.show_area()
 A3Q5
+#15
 class Num():
     def __init__(self,nums):
         self.nums=nums
@@ -72,6 +77,7 @@ print(x.sip(5))
 x=Num((1,2,5,8,13,19))
 print(x.sip(15))
 A3Q6
+#16
 class Words():
     def __init__(self,array):
         self.array=array

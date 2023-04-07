@@ -1,0 +1,90 @@
+2019110593
+王绎闻
+A2Q1
+#21
+sentence = "My email address is wang.lu@mail.shufe.edu.cn It was created on 1st Sept. 2017 Friday"
+#count the number of letter e in this sentence.
+counte = sentence.count("e") 
+print("Letter 'e' appears {} times in the sentence".format(counte))
+#show the host of the email address mail.shufe.edu.cn by using find() 
+atpos = sentence.find("@") 
+sppos = sentence.find(' ',atpos)
+host = sentence[atpos+1:sppos]
+print(host)
+#show the time in a list ['1st', 'Sept.', '2017', 'Friday'] by using find() and split() 
+atpos1 = sentence.find("1st")  
+print(sentence[atpos1:].split(" ") )
+
+A2Q2
+#22
+Info = {
+'Mike':['Java',20],
+'Tracy':['C++',21],
+'Jack':['Python',19],
+} 
+for name,languages in sorted (Info.items()):
+    print(name,end=" ")
+    for language in languages:
+        print(language,end=" ") 
+    print()
+A2Q3
+#23
+for i in range(1, 10):
+    for j in range(1, i+1):
+        print('{}*{}={}\t'.format(i, j, i*j), end='')
+    print() 
+A2Q4
+#24
+def fib(n):
+    if n==1:
+        print(1)
+    elif n==2:
+        print(1,1)
+    elif n>2:
+        print(1,1,end=" ")
+    count = 0
+    n1 = 1
+    n2 = 1
+    while count < n-2:
+        nth = n1 + n2
+        n1,n2 = n2,nth #Reasigning values 
+        count += 1 #Update the count 
+        print(nth,end=" ")
+fib(8)
+A2Q5
+#25
+def noDuplicates(x):
+    if type(x) != str:
+        print("Type of the input is not string!")   
+    else:
+        return "".join(dict.fromkeys(x))
+x="aaaaaaaa" 
+print(noDuplicates(x))
+x="abbcdcefedcba"
+print(noDuplicates(x)) 
+A2Q6
+#26
+def threeSum(arr): 
+    n = len(arr) 
+    tri = []
+    ##Finding all triplets
+    found = False
+    for i in range(0, n-2): 
+        for j in range(i+1, n-1): 
+            for k in range(j+1, n): 
+                if (arr[i] + arr[j] + arr[k] == 0): 
+                    triplet = [arr[i], arr[j], arr[k]] 
+                    triplet.sort()
+                    tri.append(triplet )
+                    found = True
+    if found == True: 
+        ##Removeing duplicates:
+        tri_unique =[]
+        for l in tri:
+            if set(l) not in [set(j) for j in tri_unique]:
+                tri_unique.append(l) 
+        return tri_unique
+    else:
+        return " Does not exist "
+y = [-1,0,1,2,-1,-4,6,-2]
+print(threeSum(y))

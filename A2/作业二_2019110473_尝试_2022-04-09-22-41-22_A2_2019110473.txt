@@ -1,0 +1,86 @@
+2019110473
+张泽楷
+A2Q1
+#11
+s = 'My email address is wang.lu@mail.shufe.edu.cn It was created on 1st Sept. 2017 Friday'
+d = 0
+for i in s:
+    if i == 'e':
+        d += 1
+print(d)
+atops = s.find('@')
+sppos = s.find('',atops-8,atops)
+host = s[sppos+1:atops]
+print(host)
+a = s.find('1st Sept. 2017 Friday')
+b = s[a:]
+print(b.split())
+A2Q2
+#12
+A2Q3
+#13
+for j in range(1,10):
+    for i in range(1,j+1):
+        r = i*j
+        if i < j:
+            print(j,'*',i,"=",r,'',end = '')
+        else:
+            print(j,'*',i,'=',r,'')
+A2Q4
+#14
+def fib(n):
+    if n==1:
+        print(1)
+    elif n==2:
+        print(1,1)
+    elif n>2:
+        print(1,1,end=" ")
+    count = 0
+    n1 = 1
+    n2 = 1
+    while count < n-2:
+        nth = n1 + n2
+        print(nth,end=" ")
+        if count%2 == 0:
+            n1 = nth
+        else:
+            n2 = nth
+        count += 1
+fib(8)
+A2Q5
+#15
+def noDuplicates(x):
+    m=''
+    for i in x:
+        if i not in m:
+            m += i
+    print(m)
+A2Q6
+#16
+def threeSum(y):
+    out = [] 
+    if len(y) < 3:
+        return []
+    y.sort()  # 排序
+    for j in range(0, len(y) - 2):
+        if y[j] > 0: 
+            break
+        if j > 0 and y[j] == y[j - 1]: 
+            continue
+        left = j + 1  
+        right = len(y) - 1  
+        target = 0 - y[j]  
+        while left < right:
+            if y[left] + y[right] == target:
+                out.append([y[j], y[left], y[right]])
+                while left < right and y[left] == y[left + 1]:
+                    left += 1
+                while left < right and y[right] == y[right - 1]:
+                    right -= 1
+                left += 1
+                right -= 1
+            elif y[left] + y[right] > target:
+                right -= 1
+            else:
+                left += 1
+    return out
