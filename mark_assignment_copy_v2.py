@@ -57,9 +57,11 @@ def create_pyfile(aNo):
                 # if student_id:
                 #     line_list[0] = student_id
                 # else:
-                file_start = txtfilename.find('_')
-                file_end = txtfilename.find('_', file_start+1)
-                student_id = txtfilename[file_start+1: file_end]
+                #------bb系统------
+                # file_start = txtfilename.find('_')
+                # file_end = txtfilename.find('_', file_start+1)
+                file_end = txtfilename.find('_')
+                student_id = txtfilename[: file_end]
                 for w in range(1, 7):
                     student_answer_each_q = student_id.strip(
                     ) + "_A" + str(aNo) + "Q" + str(w) + ".py"
